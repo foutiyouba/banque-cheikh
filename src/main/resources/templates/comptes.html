@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org "
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template1">
+ 
+
+<head>
+<meta charset="UTF-8">
+<title>Votre banque</title>
+</head>
+<body>  
+    <div layout:fragment="content"> 
+      <div class="col-md-6"> 
+         <div class="panel panel-primary">
+           <div class="panel-heading">Consulter Compte</div>
+            <div class="panel-body">
+            <form th:action="@{/consulterCompte}" method="get">
+             <div>
+             <label>Code cpte :</label>
+              <input type="text" name="codeCompte"/>
+              <button type="submit" class="btn btn-primary">Ok</button>
+              <label th:text="${compte.codeCompte}"></label>
+             </div>
+            </form>
+            </div>
+         </div>
+         
+         <div class="panel panel-primary" th:if="${compte}">
+           <div class="panel-heading">Informations sur le compte</div>
+            <div class="panel-body">
+              <div>
+              <label>Code :</label>
+              <label th:text="${compte.codeCompte}"></label>
+              </div>
+              
+               <div>
+              <label>Solde :</label>
+              <label th:text="${compte.solde}"></label>
+              </div>
+              
+              <div>
+              <label>Date de creation :</label>
+              <label th:text="${compte.dateCreation}"></label>
+              </div>
+               
+               <div>
+              <label>Type du Compte :</label>
+              <label th:text="${compte.class.simpleName}"></label>
+              </div>
+              
+              <div th:if="${compte.class.simpleName=='CompteCourant'}">
+              <label>Decouvert:</label>
+              <label th:text="${compte.decouvert}"></label>
+              </div>
+              
+              <div th:if="${compte.class.simpleName=='CompteEpargne'}">
+              <label>Taux :</label>
+              <label th:text="${compte.taux}"></label>
+              </div>
+              
+            </div>
+         </div>
+      
+      </div>
+      
+        <div class="col-md-6"> 
+        <div class="panel panel-primary">
+           <div class="panel-heading">Operations sur le compte</div>
+            <div class="panel-body">
+            
+            </div>
+         </div>
+         
+         <div class="panel panel-primary">
+           <div class="panel-heading">Liste des Operations</div>
+            <div class="panel-body">
+            
+            </div>
+         </div>
+      </div>
+      
+ </div>     
+</body> 
+</html>
